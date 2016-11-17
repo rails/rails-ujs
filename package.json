@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rails/jquery-ujs.git"
+    "url": "https://github.com/rails/rails-ujs.git"
   },
   "author": {
     "name": "All contributors",
@@ -19,9 +19,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rails/jquery-ujs/issues"
+    "url": "https://github.com/rails/rails-ujs/issues"
   },
-  "homepage": "https://github.com/rails/jquery-ujs#readme",
+  "homepage": "https://github.com/rails/rails-ujs#readme",
   "devDependencies": {
     "coffeelint": "^1.15.7",
     "eslint": "^2.13.1"
