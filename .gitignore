@@ -1,0 +1,11 @@
+test/public/vendor/jquery.js
+node_modules
+*.swp
+*.swo
+.#*
+.bundle
+.DS_Store
+*~
+/npm-debug.log
+/log
+/tmp
