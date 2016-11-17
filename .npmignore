@@ -1,0 +1,7 @@
+Gemfile*
+Rakefile
+yarn.lock
+script
+src
+test
+tmp
