@@ -11,7 +11,9 @@
     "Gemfile*",
     "Rakefile",
     "bower_components",
+    "node_modules",
     "script",
-    "test"
+    "test",
+    "tmp"
   ]
 }
