@@ -1,6 +1,6 @@
 #
 # Unobtrusive JavaScript
-# https://github.com/rails/jquery-ujs
+# https://github.com/rails/rails-ujs
 #
 # Released under the MIT license
 #
