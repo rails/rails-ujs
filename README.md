@@ -50,7 +50,7 @@ Require `rails-ujs` into your application.js manifest.
 How to run tests
 ------------
 
-Follow [this wiki](https://github.com/rails/jquery-ujs/wiki/Running-Tests-and-Contributing) to run tests.
+Run `bundle exec rake test:server` first, and then run the web tests by visiting [[http://localhost:4567]] in your browser.
 
 ## Contributing to rails-ujs
 
