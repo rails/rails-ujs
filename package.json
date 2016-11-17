@@ -1,22 +1,26 @@
 {
   "name": "rails-ujs",
   "version": "0.0.1",
-  "description": "Unobtrusive JavaScript used in Rails",
+  "description": "Ruby on Rails unobtrusive scripting adapter",
   "main": "dist/rails.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "lint": "coffeelint src && eslint test/public/test"
+    "test": "echo \"See the README: https://github.com/rails/rails-ujs#how-to-run-tests\" && exit 1",
+    "lint": "coffeelint src && eslint test/public/test",
+    "postversion": "git push && git push --tags && npm publish"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/rails/rails-ujs.git"
   },
-  "author": {
-    "name": "All contributors",
-    "url": "https://github.com/rails/jquery-ujs/graphs/contributors"
-  },
+  "author": [
+    "Stephen St. Martin",
+    "Steve Schwartz",
+    "Dangyi Liu",
+    "All contributors"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rails/rails-ujs/issues"
