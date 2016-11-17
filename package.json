@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "build": "bundle exec blade build",
     "test": "echo \"See the README: https://github.com/rails/rails-ujs#how-to-run-tests\" && exit 1",
     "lint": "coffeelint src && eslint test/public/test",
     "postversion": "git push && git push --tags && npm publish"
@@ -15,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/rails/rails-ujs.git"
   },
-  "author": [
+  "contributors": [
     "Stephen St. Martin",
     "Steve Schwartz",
     "Dangyi Liu",
