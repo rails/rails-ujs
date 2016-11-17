@@ -1,18 +1,18 @@
-Contributing to jquery-ujs
+Contributing to rails-ujs
 =====================
 
 [![Build Status](https://travis-ci.org/rails/jquery-ujs.svg?branch=master)](https://travis-ci.org/rails/jquery-ujs)
 
-jquery-ujs is work of [many contributors](https://github.com/rails/jquery-ujs/graphs/contributors). You're encouraged to submit [pull requests](https://github.com/rails/jquery-ujs/pulls), [propose features and discuss issues](https://github.com/rails/jquery-ujs/issues).
+rails-ujs is work of [many contributors](https://github.com/rails/jquery-ujs/graphs/contributors). You're encouraged to submit [pull requests](https://github.com/rails/rails-ujs/pulls), [propose features and discuss issues](https://github.com/rails/rails-ujs/issues).
 
 #### Fork the Project
 
-Fork the [project on Github](https://github.com/rails/jquery-ujs) and check out your copy.
+Fork the [project on Github](https://github.com/rails/rails-ujs) and check out your copy.
 
 ```
-git clone https://github.com/contributor/jquery-ujs.git
-cd jquery-ujs
-git remote add upstream https://github.com/rails/jquery-ujs.git
+git clone https://github.com/contributor/rails-ujs.git
+cd rails-ujs
+git remote add upstream https://github.com/rails/rails-ujs.git
 ```
 
 #### Create a Topic Branch
@@ -38,7 +38,7 @@ rake test:server
 
 Try to write a test that reproduces the problem you're trying to fix or describes a feature that you want to build. Add to [test](test).
 
-Here are some additional notes to keep in mind when developing your patch for jquery-ujs.
+Here are some additional notes to keep in mind when developing your patch for rails-ujs.
 
 * The tests can be found in:
 ```
@@ -84,7 +84,7 @@ git push origin my-feature-branch
 
 #### Make a Pull Request
 
-Go to https://github.com/contributor/jquery-ujs and select your feature branch. Click the 'Pull Request' button and fill out the form. Pull requests are usually reviewed within a few days.
+Go to https://github.com/contributor/rails-ujs and select your feature branch. Click the 'Pull Request' button and fill out the form. Pull requests are usually reviewed within a few days.
 
 #### Rebase
 
