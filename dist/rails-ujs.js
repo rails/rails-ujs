@@ -130,11 +130,14 @@
 
       Rails.delegate = function(element, selector, eventType, handler) {
         return element.addEventListener(eventType, function(e) {
-          if (matches(e.target, selector)) {
-            if (handler.call(e.target, e) === false) {
-              e.preventDefault();
-              return e.stopPropagation();
-            }
+          var target;
+          target = e.target;
+          while (!(!(target instanceof Element) || matches(target, selector))) {
+            target = target.parentNode;
+          }
+          if (target instanceof Element && handler.call(target, e) === false) {
+            e.preventDefault();
+            return e.stopPropagation();
           }
         });
       };
@@ -353,7 +356,7 @@
       fire = Rails.fire, stopEverything = Rails.stopEverything;
 
       Rails.handleConfirm = function(e) {
-        if (!allowAction(e.target)) {
+        if (!allowAction(this)) {
           return stopEverything(e);
         }
       };
@@ -473,7 +476,7 @@
 
       Rails.handleMethod = function(e) {
         var csrfParam, csrfToken, form, formContent, href, link, method;
-        link = e.target;
+        link = this;
         method = link.getAttribute('data-method');
         if (!method) {
           return;
@@ -512,7 +515,7 @@
 
       Rails.handleRemote = function(e) {
         var button, data, dataType, element, method, url, withCredentials;
-        element = e.target;
+        element = this;
         if (!isRemote(element)) {
           return true;
         }
@@ -585,7 +588,7 @@
 
       Rails.validateForm = function(e) {
         var blankRequiredInputs, form;
-        form = e.target;
+        form = this;
         if (form.noValidate || getData(form, 'ujs:formnovalidate-button')) {
           return;
         }
@@ -597,7 +600,7 @@
 
       Rails.formSubmitButtonClick = function(e) {
         var button, form;
-        button = e.target;
+        button = this;
         form = button.form;
         if (!form) {
           return;
@@ -615,7 +618,7 @@
 
       Rails.handleMetaClick = function(e) {
         var data, link, metaClick, method;
-        link = e.target;
+        link = this;
         method = (link.getAttribute('data-method') || 'GET').toUpperCase();
         data = link.getAttribute('data-params');
         metaClick = e.metaKey || e.ctrlKey;
