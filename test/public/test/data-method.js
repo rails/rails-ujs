@@ -29,6 +29,16 @@ asyncTest('link with "data-method" set to "delete"', 3, function() {
   })
 })
 
+asyncTest('click on the child of link with "data-method"', 3, function() {
+  $(document).bind('iframe:loaded', function(e, data) {
+    equal(data.REQUEST_METHOD, 'DELETE')
+    strictEqual(data.params.authenticity_token, undefined)
+    strictEqual(data.HTTP_X_CSRF_TOKEN, undefined)
+    start()
+  })
+  $('#qunit-fixture a').html('<strong>destroy!</strong>').find('strong').triggerNative('click')
+})
+
 asyncTest('link with "data-method" and CSRF', 1, function() {
   $('#qunit-fixture')
     .append('<meta name="csrf-param" content="authenticity_token"/>')

@@ -3,7 +3,7 @@
 { fire, stopEverything } = Rails
 
 Rails.handleConfirm = (e) ->
-  stopEverything(e) unless allowAction(e.target)
+  stopEverything(e) unless allowAction(this)
 
 # For 'data-confirm' attribute:
 # - Fires `confirm` event

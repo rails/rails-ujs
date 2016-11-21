@@ -33,7 +33,8 @@ Rails.stopEverything = (e) ->
 
 Rails.delegate = (element, selector, eventType, handler) ->
   element.addEventListener eventType, (e) ->
-    if matches(e.target, selector)
-      if handler.call(e.target, e) == false
-        e.preventDefault()
-        e.stopPropagation()
+    target = e.target
+    target = target.parentNode until not (target instanceof Element) or matches(target, selector)
+    if target instanceof Element and handler.call(target, e) == false
+      e.preventDefault()
+      e.stopPropagation()

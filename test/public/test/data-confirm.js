@@ -263,3 +263,26 @@ asyncTest('a button inside a form only confirms once', 1, function() {
   ok(confirmations === 1, 'confirmation counter should be 1, but it was ' + confirmations)
   start()
 })
+
+asyncTest('clicking on the children of a link should also trigger a confirm', 6, function() {
+  var message
+  // auto-confirm:
+  window.confirm = function(msg) { message = msg; return true }
+
+  $('a[data-confirm]')
+    .html('<strong>Click me</strong>')
+    .bindNative('confirm:complete', function(e, data) {
+      App.assertCallbackInvoked('confirm:complete')
+      ok(data == true, 'confirm:complete passes in confirm answer (true)')
+    })
+    .bindNative('ajax:success', function(e, data, status, xhr) {
+      App.assertCallbackInvoked('ajax:success')
+      App.assertRequestPath(data, '/echo')
+      App.assertGetRequest(data)
+
+      equal(message, 'Are you absolutely sure?')
+      start()
+    })
+    .find('strong')
+    .triggerNative('click')
+})

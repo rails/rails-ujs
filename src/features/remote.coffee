@@ -14,7 +14,7 @@ isRemote = (element) ->
 
 # Submits "remote" forms and links with ajax
 Rails.handleRemote = (e) ->
-  element = e.target
+  element = this
 
   return true unless isRemote(element)
   unless fire(element, 'ajax:before')
@@ -74,7 +74,7 @@ Rails.handleRemote = (e) ->
 # Check whether any required fields are empty
 # In both ajax mode and normal mode
 Rails.validateForm = (e) ->
-  form = e.target
+  form = this
   return if form.noValidate or getData(form, 'ujs:formnovalidate-button')
   # Skip other logic when required values are missing or file upload is present
   blankRequiredInputs = blankInputs(form, Rails.requiredInputSelector, false)
@@ -82,7 +82,7 @@ Rails.validateForm = (e) ->
     stopEverything(e)
 
 Rails.formSubmitButtonClick = (e) ->
-  button = e.target
+  button = this
   form = button.form
   return unless form
   # Register the pressed submit button
@@ -93,7 +93,7 @@ Rails.formSubmitButtonClick = (e) ->
   setData(form, 'ujs:submit-button-formmethod', button.getAttribute('formmethod'))
 
 Rails.handleMetaClick = (e) ->
-  link = e.target
+  link = this
   method = (link.getAttribute('data-method') or 'GET').toUpperCase()
   data = link.getAttribute('data-params')
   metaClick = e.metaKey or e.ctrlKey
