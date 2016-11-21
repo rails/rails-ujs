@@ -1,7 +1,7 @@
 desc %(Starts the test server and opens it in a web browser)
 multitask :develop => ['test:server', 'test:open']
 
-desc %(Build source files into dist/rails.js)
+desc %(Build source files into dist/rails-ujs.js)
 task :build do
   system "bundle exec blade build"
 end

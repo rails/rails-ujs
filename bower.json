@@ -3,7 +3,7 @@
   "homepage": "https://github.com/rails/jquery-ujs",
   "authors": ["Stephen St. Martin", "Steve Schwartz", "Dangyi Liu", "All contributors"],
   "description": "Ruby on Rails unobtrusive scripting adapter",
-  "main": "dist/rails.js",
+  "main": "dist/rails-ujs.js",
   "license": "MIT",
   "dependencies": {},
   "ignore": [

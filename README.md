@@ -20,6 +20,22 @@ Requirements
 If you don't use HTML5, adding "data" attributes to your HTML4 or XHTML pages might make them fail [W3C markup validation][validator]. However, this shouldn't create any issues for web browsers or other user agents.
 
 
+Installation using the rails-ujs gem
+------------
+
+For automated installation in Rails, use the "rails-ujs" gem. Place this in your Gemfile:
+
+```ruby
+gem 'rails-ujs'
+```
+
+And run:
+
+```shell
+$ bundle install
+```
+
+
 Installation using Bower
 ------------
 

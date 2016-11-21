@@ -6,5 +6,5 @@ logical_paths:
 
 build:
   logical_paths:
-    - rails.js
+    - rails-ujs.js
   path: dist

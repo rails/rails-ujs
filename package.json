@@ -2,7 +2,7 @@
   "name": "rails-ujs",
   "version": "0.0.1",
   "description": "Ruby on Rails unobtrusive scripting adapter",
-  "main": "dist/rails.js",
+  "main": "dist/rails-ujs.js",
   "directories": {
     "test": "test"
   },
