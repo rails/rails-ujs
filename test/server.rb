@@ -6,7 +6,7 @@ JQUERY_VERSIONS = %w[ 1.8.0 1.8.1 1.8.2 1.8.3 1.9.0 1.9.1 1.10.0 1.10.1 1.10.2 1
 
 Blade.initialize!
 
-get '/rails.js' do
+get '/rails-ujs.js' do
   Blade::Assets.environment.call(env)
 end
 

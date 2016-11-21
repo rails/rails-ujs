@@ -2,7 +2,7 @@ load_paths:
   - src
 
 logical_paths:
-  - rails.js
+  - rails-ujs.js
 
 build:
   logical_paths:
