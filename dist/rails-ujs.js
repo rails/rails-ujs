@@ -294,7 +294,7 @@
                 });
               }
             });
-          } else if (input.type !== 'radio' && input.type !== 'checkbox' || input.checked) {
+          } else if (input.checked || ['radio', 'checkbox', 'submit'].indexOf(input.type) === -1) {
             return params.push({
               name: input.name,
               value: input.value
