@@ -14,7 +14,7 @@ Rails.serializeElement = (element, additionalParam) ->
     if matches(input, 'select')
       toArray(input.options).forEach (option) ->
         params.push(name: input.name, value: option.value) if option.selected
-    else if input.type isnt 'radio' and input.type isnt 'checkbox' or input.checked
+    else if input.checked or ['radio', 'checkbox', 'submit'].indexOf(input.type) == -1
       params.push(name: input.name, value: input.value)
 
   params.push(additionalParam) if additionalParam
