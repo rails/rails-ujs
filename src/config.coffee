@@ -24,9 +24,6 @@
   # Form input elements re-enabled after form submission
   formEnableSelector: 'input[data-disable-with]:disabled, button[data-disable-with]:disabled, textarea[data-disable-with]:disabled, input[data-disable]:disabled, button[data-disable]:disabled, textarea[data-disable]:disabled'
 
-  # Form required input elements
-  requiredInputSelector: 'input[name][required]:not([disabled]), textarea[name][required]:not([disabled])'
-
   # Form file input elements
   fileInputSelector: 'input[name][type=file]:not([disabled])'
 
