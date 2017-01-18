@@ -14,7 +14,7 @@
   refreshCSRFTokens, CSRFProtection
   enableElement, disableElement
   handleConfirm
-  handleRemote, validateForm, formSubmitButtonClick, handleMetaClick
+  handleRemote, formSubmitButtonClick, handleMetaClick
   handleMethod
 } = Rails
 
@@ -58,7 +58,6 @@ Rails.start = ->
   delegate document, Rails.inputChangeSelector, 'change', handleRemote
 
   delegate document, Rails.formSubmitSelector, 'submit', handleConfirm
-  delegate document, Rails.formSubmitSelector, 'submit', validateForm
   delegate document, Rails.formSubmitSelector, 'submit', handleRemote
   # Normal mode submit
   # Slight timeout so that the submit button gets properly serialized
