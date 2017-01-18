@@ -1,7 +1,7 @@
 Contributing to rails-ujs
 =====================
 
-[![Build Status](https://travis-ci.org/rails/jquery-ujs.svg?branch=master)](https://travis-ci.org/rails/jquery-ujs)
+[![Build Status](https://travis-ci.org/rails/rails-ujs.svg?branch=master)](https://travis-ci.org/rails/rails-ujs)
 
 rails-ujs is work of [many contributors](https://github.com/rails/rails-ujs/graphs/contributors) including [jquery-ujs contributors](https://github.com/rails/jquery-ujs/graphs/contributors). You're encouraged to submit [pull requests](https://github.com/rails/rails-ujs/pulls), [propose features and discuss issues](https://github.com/rails/rails-ujs/issues).
 

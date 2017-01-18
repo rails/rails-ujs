@@ -1,21 +1,21 @@
 #= export Rails
 
 @Rails =
-  # Link elements bound by jquery-ujs
+  # Link elements bound by rails-ujs
   linkClickSelector: 'a[data-confirm], a[data-method], a[data-remote]:not([disabled]), a[data-disable-with], a[data-disable]'
 
-  # Button elements bound by jquery-ujs
+  # Button elements bound by rails-ujs
   buttonClickSelector:
     selector: 'button[data-remote]:not([form]), button[data-confirm]:not([form])'
     exclude: 'form button'
 
-  # Select elements bound by jquery-ujs
+  # Select elements bound by rails-ujs
   inputChangeSelector: 'select[data-remote], input[data-remote], textarea[data-remote]'
 
-  # Form elements bound by jquery-ujs
+  # Form elements bound by rails-ujs
   formSubmitSelector: 'form'
 
-  # Form input elements bound by jquery-ujs
+  # Form input elements bound by rails-ujs
   formInputClickSelector: 'form input[type=submit], form input[type=image], form button[type=submit], form button:not([type]), input[type=submit][form], input[type=image][form], button[type=submit][form], button[form]:not([type])'
 
   # Form input elements disabled during form submission
