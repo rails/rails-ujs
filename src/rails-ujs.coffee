@@ -25,8 +25,8 @@ if jQuery? and not jQuery.rails
     CSRFProtection(xhr) unless options.crossDomain
 
 Rails.start = ->
-  # Cut down on the number of issues from people inadvertently including jquery_ujs twice
-  # by detecting and raising an error when it happens.
+  # Cut down on the number of issues from people inadvertently including
+  # rails-ujs twice by detecting and raising an error when it happens.
   throw new Error('rails-ujs has already been loaded!') if window._rails_loaded
 
   # This event works the same as the load event, except that it fires every
