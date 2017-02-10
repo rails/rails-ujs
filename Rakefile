@@ -6,6 +6,8 @@ task :build do
   system "bundle exec blade build"
 end
 
+task default: :develop
+
 PORT = 4567
 
 namespace :test do
