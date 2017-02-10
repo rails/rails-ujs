@@ -1,7 +1,5 @@
 ## Releasing rails-ujs
 
-### Releasing to npm
-
 Make sure npm's configuration `sign-git-tag` is set to true.
 
 ```
@@ -21,3 +19,7 @@ This will:
 * Generate the tag
 * Push the commit and the tag to the repository
 * Publish the package in https://www.npmjs.com
+
+```
+rake release
+```

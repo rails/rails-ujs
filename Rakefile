@@ -1,3 +1,5 @@
+require "bundler/gem_tasks"
+
 desc %(Starts the test server and opens it in a web browser)
 multitask develop: ["test:server", "test:open"]
 
