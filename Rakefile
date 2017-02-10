@@ -1,5 +1,5 @@
 desc %(Starts the test server and opens it in a web browser)
-multitask :develop => ['test:server', 'test:open']
+multitask develop: ["test:server", "test:open"]
 
 desc %(Build source files into dist/rails-ujs.js)
 task :build do
@@ -11,7 +11,7 @@ PORT = 4567
 namespace :test do
   desc %(Starts the test server)
   task :server do
-    system 'bundle exec ruby test/server.rb'
+    system "bundle exec ruby test/server.rb"
   end
 
   desc %(Starts the test server which reloads everything on each refresh)
@@ -23,26 +23,26 @@ namespace :test do
     url = "http://localhost:#{PORT}"
     puts "Opening test app at #{url} ..."
     sleep 3
-    system( *browse_cmd(url) )
+    system(*browse_cmd(url))
   end
 end
 
 # Returns an array e.g.: ['open', 'http://example.com']
 def browse_cmd(url)
-  require 'rbconfig'
-  browser = ENV['BROWSER'] ||
-    (RbConfig::CONFIG['host_os'].include?('darwin') && 'open') ||
-    (RbConfig::CONFIG['host_os'] =~ /msdos|mswin|djgpp|mingw|windows/ && 'start') ||
+  require "rbconfig"
+  browser = ENV["BROWSER"] ||
+    (RbConfig::CONFIG["host_os"].include?("darwin") && "open") ||
+    (RbConfig::CONFIG["host_os"] =~ /msdos|mswin|djgpp|mingw|windows/ && "start") ||
     %w[xdg-open x-www-browser firefox opera mozilla netscape].find { |comm| which comm }
 
-  abort('ERROR: no web browser detected') unless browser
+  abort("ERROR: no web browser detected") unless browser
   Array(browser) << url
 end
 
 # which('ruby') #=> /usr/bin/ruby
-def which cmd
-  exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
-  ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
+def which(cmd)
+  exts = ENV["PATHEXT"] ? ENV["PATHEXT"].split(";") : [""]
+  ENV["PATH"].split(File::PATH_SEPARATOR).each do |path|
     exts.each { |ext|
       exe = "#{path}/#{cmd}#{ext}"
       return exe if File.executable? exe

@@ -1,17 +1,17 @@
-require 'sinatra'
-require 'json'
-require 'blade'
+require "sinatra"
+require "json"
+require "blade"
 
 JQUERY_VERSIONS = %w[ 1.8.0 1.8.1 1.8.2 1.8.3 1.9.0 1.9.1 1.10.0 1.10.1 1.10.2 1.11.0 2.0.0 2.1.0].freeze
 
 Blade.initialize!
 
-get '/rails-ujs.js' do
+get "/rails-ujs.js" do
   Blade::Assets.environment.call(env)
 end
 
 helpers do
-  def jquery_link version
+  def jquery_link(version)
     if params[:version] == version
       "[#{version}]"
     else
@@ -19,7 +19,7 @@ helpers do
     end
   end
 
-  def cdn_link cdn
+  def cdn_link(cdn)
     if params[:cdn] == cdn
       "[#{cdn}]"
     else
@@ -28,22 +28,22 @@ helpers do
   end
 
   def jquery_src
-    if params[:version] == 'edge'
+    if params[:version] == "edge"
       "/vendor/jquery.js"
-    elsif params[:cdn] && params[:cdn] == 'googleapis'
+    elsif params[:cdn] && params[:cdn] == "googleapis"
       "https://ajax.googleapis.com/ajax/libs/jquery/#{params[:version]}/jquery.min.js"
     else
       "http://code.jquery.com/jquery-#{params[:version]}.js"
     end
   end
 
-  def test *names
+  def test(*names)
     names = ["/vendor/qunit.js", "settings"] + names
     names.map { |name| script_tag name }.join("\n")
   end
 
-  def script_tag src
-    src = "/test/#{src}.js" unless src.index('/')
+  def script_tag(src)
+    src = "/test/#{src}.js" unless src.index("/")
     %(<script src="#{src}" type="text/javascript"></script>)
   end
 
@@ -52,24 +52,24 @@ helpers do
   end
 end
 
-get '/' do
-  params[:version] ||= ENV['JQUERY_VERSION'] || '1.11.0'
-  params[:cdn] ||= 'jquery'
+get "/" do
+  params[:version] ||= ENV["JQUERY_VERSION"] || "1.11.0"
+  params[:cdn] ||= "jquery"
   erb :index
 end
 
 [:get, :post, :put, :delete].each do |method|
-  send(method, '/echo') {
-    data = { :params => params }.update(request.env)
+  send(method, "/echo") {
+    data = { params: params }.update(request.env)
 
-    if params[:content_type] and params[:content]
+    if params[:content_type] && params[:content]
       content_type params[:content_type]
       params[:content]
     elsif request.xhr?
-      content_type 'application/json'
+      content_type "application/json"
       JSON.generate(data)
     elsif params[:iframe]
-      payload = JSON.generate(data).gsub('<', '&lt;').gsub('>', '&gt;')
+      payload = JSON.generate(data).gsub("<", "&lt;").gsub(">", "&gt;")
       <<-HTML
         <script>
           if (window.top && window.top !== window)
@@ -78,13 +78,13 @@ end
         <p>You shouldn't be seeing this. <a href="#{request.env['HTTP_REFERER']}">Go back</a></p>
       HTML
     else
-      content_type 'text/plain'
+      content_type "text/plain"
       status 400
       "ERROR: #{request.path} requested without ajax"
     end
   }
 end
 
-get '/error' do
+get "/error" do
   status 403
 end
