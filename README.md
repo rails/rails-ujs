@@ -23,7 +23,7 @@ Installation using the rails-ujs gem
 For automated installation in Rails, use the "rails-ujs" gem. Place this in your Gemfile:
 
 ```ruby
-gem 'rails-ujs'
+gem 'rails-ujs', git: 'https://github.com/rails/rails-ujs.git'
 ```
 
 And run:
