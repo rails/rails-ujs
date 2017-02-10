@@ -1,6 +1,8 @@
 engines:
   rubocop:
     enabled: true
+  coffeelint:
+    enabled: true
 
 ratings:
   paths:
@@ -8,5 +10,3 @@ ratings:
 
 exclude_paths:
   - dist/
-  - script/
-  - src/
