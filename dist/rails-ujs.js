@@ -12,7 +12,6 @@
         formInputClickSelector: 'form input[type=submit], form input[type=image], form button[type=submit], form button:not([type]), input[type=submit][form], input[type=image][form], button[type=submit][form], button[form]:not([type])',
         formDisableSelector: 'input[data-disable-with]:enabled, button[data-disable-with]:enabled, textarea[data-disable-with]:enabled, input[data-disable]:enabled, button[data-disable]:enabled, textarea[data-disable]:enabled',
         formEnableSelector: 'input[data-disable-with]:disabled, button[data-disable-with]:disabled, textarea[data-disable-with]:disabled, input[data-disable]:disabled, button[data-disable]:disabled, textarea[data-disable]:disabled',
-        requiredInputSelector: 'input[name][required]:not([disabled]), textarea[name][required]:not([disabled])',
         fileInputSelector: 'input[name][type=file]:not([disabled])',
         linkDisableSelector: 'a[data-disable-with], a[data-disable]',
         buttonDisableSelector: 'button[data-remote][data-disable-with], button[data-remote][data-disable]'
@@ -100,7 +99,7 @@
 
       CustomEvent = window.CustomEvent;
 
-      if (typeof CustomEvent === 'function') {
+      if (typeof CustomEvent !== 'function') {
         CustomEvent = function(event, params) {
           var evt;
           evt = document.createEvent('CustomEvent');
@@ -323,32 +322,6 @@
         }
       };
 
-      Rails.blankInputs = function(form, selector, nonBlank) {
-        var checkedRadioButtonNames, foundInputs, requiredInputs;
-        foundInputs = [];
-        requiredInputs = toArray(form.querySelectorAll(selector || 'input, textarea'));
-        checkedRadioButtonNames = {};
-        requiredInputs.forEach(function(input) {
-          var radioName, radios, valueToCheck;
-          if (input.type === 'radio') {
-            radioName = input.name;
-            if (!checkedRadioButtonNames[radioName]) {
-              if (form.querySelectorAll("input[type=radio][name='" + radioName + "']:checked").length === 0) {
-                radios = form.querySelectorAll("input[type=radio][name='" + radioName + "']");
-                foundInputs = foundInputs.concat(toArray(radios));
-              }
-              return checkedRadioButtonNames[radioName] = radioName;
-            }
-          } else {
-            valueToCheck = input.type === 'checkbox' ? input.checked : !!input.value;
-            if (valueToCheck === nonBlank) {
-              return foundInputs.push(input);
-            }
-          }
-        });
-        return foundInputs;
-      };
-
     }).call(this);
     (function() {
       var allowAction, fire, stopEverything;
@@ -502,10 +475,10 @@
 
     }).call(this);
     (function() {
-      var ajax, blankInputs, fire, getData, isCrossDomain, isRemote, matches, serializeElement, setData, stopEverything,
+      var ajax, fire, getData, isCrossDomain, isRemote, matches, serializeElement, setData, stopEverything,
         slice = [].slice;
 
-      matches = Rails.matches, getData = Rails.getData, setData = Rails.setData, fire = Rails.fire, stopEverything = Rails.stopEverything, ajax = Rails.ajax, isCrossDomain = Rails.isCrossDomain, blankInputs = Rails.blankInputs, serializeElement = Rails.serializeElement;
+      matches = Rails.matches, getData = Rails.getData, setData = Rails.setData, fire = Rails.fire, stopEverything = Rails.stopEverything, ajax = Rails.ajax, isCrossDomain = Rails.isCrossDomain, serializeElement = Rails.serializeElement;
 
       isRemote = function(element) {
         var value;
@@ -586,18 +559,6 @@
         return stopEverything(e);
       };
 
-      Rails.validateForm = function(e) {
-        var blankRequiredInputs, form;
-        form = this;
-        if (form.noValidate || getData(form, 'ujs:formnovalidate-button')) {
-          return;
-        }
-        blankRequiredInputs = blankInputs(form, Rails.requiredInputSelector, false);
-        if (blankRequiredInputs.length > 0 && fire(form, 'ajax:aborted:required', [blankRequiredInputs])) {
-          return stopEverything(e);
-        }
-      };
-
       Rails.formSubmitButtonClick = function(e) {
         var button, form;
         button = this;
@@ -629,9 +590,9 @@
 
     }).call(this);
     (function() {
-      var $, CSRFProtection, delegate, disableElement, enableElement, fire, formSubmitButtonClick, getData, handleConfirm, handleMetaClick, handleMethod, handleRemote, refreshCSRFTokens, validateForm;
+      var $, CSRFProtection, delegate, disableElement, enableElement, fire, formSubmitButtonClick, getData, handleConfirm, handleMetaClick, handleMethod, handleRemote, refreshCSRFTokens;
 
-      fire = Rails.fire, delegate = Rails.delegate, getData = Rails.getData, $ = Rails.$, refreshCSRFTokens = Rails.refreshCSRFTokens, CSRFProtection = Rails.CSRFProtection, enableElement = Rails.enableElement, disableElement = Rails.disableElement, handleConfirm = Rails.handleConfirm, handleRemote = Rails.handleRemote, validateForm = Rails.validateForm, formSubmitButtonClick = Rails.formSubmitButtonClick, handleMetaClick = Rails.handleMetaClick, handleMethod = Rails.handleMethod;
+      fire = Rails.fire, delegate = Rails.delegate, getData = Rails.getData, $ = Rails.$, refreshCSRFTokens = Rails.refreshCSRFTokens, CSRFProtection = Rails.CSRFProtection, enableElement = Rails.enableElement, disableElement = Rails.disableElement, handleConfirm = Rails.handleConfirm, handleRemote = Rails.handleRemote, formSubmitButtonClick = Rails.formSubmitButtonClick, handleMetaClick = Rails.handleMetaClick, handleMethod = Rails.handleMethod;
 
       if ((typeof jQuery !== "undefined" && jQuery !== null) && !jQuery.rails) {
         jQuery.rails = Rails;
@@ -644,7 +605,7 @@
 
       Rails.start = function() {
         if (window._rails_loaded) {
-          throw new Error('jquery-ujs has already been loaded!');
+          throw new Error('rails-ujs has already been loaded!');
         }
         window.addEventListener('pageshow', function() {
           $(Rails.formEnableSelector).forEach(function(el) {
@@ -673,7 +634,6 @@
         delegate(document, Rails.inputChangeSelector, 'change', handleConfirm);
         delegate(document, Rails.inputChangeSelector, 'change', handleRemote);
         delegate(document, Rails.formSubmitSelector, 'submit', handleConfirm);
-        delegate(document, Rails.formSubmitSelector, 'submit', validateForm);
         delegate(document, Rails.formSubmitSelector, 'submit', handleRemote);
         delegate(document, Rails.formSubmitSelector, 'submit', function(e) {
           return setTimeout((function() {
