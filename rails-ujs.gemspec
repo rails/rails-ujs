@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 require "json"
-version = JSON.parse(File.read("package.json"))["version"]
+version = JSON.parse(File.read("package.json"))["version"].gsub("-", ".")
 
 Gem::Specification.new do |s|
   s.name        = "rails-ujs"
