@@ -1,6 +1,8 @@
 Ruby on Rails unobtrusive scripting adapter.
 ========================================
 
+[![Build Status](https://travis-ci.org/rails/rails-ujs.svg?branch=master)](https://travis-ci.org/rails/rails-ujs)
+
 This unobtrusive scripting support file is developed for the Ruby on Rails framework, but is not strictly tied to any specific backend. You can drop this into any application to:
 
 - force confirmation dialogs for various actions;
